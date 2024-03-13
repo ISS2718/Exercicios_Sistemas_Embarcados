@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 USE ieee.numeric_std.ALL;
 
--- 60 min miliseconds counter --
+-- 60 min counter --
 entity counter is
   Port (
     -- 1KHz Clock --
