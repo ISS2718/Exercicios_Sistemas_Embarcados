@@ -38,14 +38,14 @@ architecture Behavioral of counter is
 begin
   process (clk1Khz, reset, start, pause) begin
     -- Counter 60 minutes in miliseconds --
-    if reset = '1' then
+    if reset = '0' then
       miliseconds <= 0;
       seconds <= 0;
       minutes <= 0;
       running <= '0';
-    elsif start = '1' then
+    elsif start = '0' then
       running <= '1';
-    elsif pause = '1' then
+    elsif pause = '0' then
       running <= '0';
     elsif rising_edge(clk1Khz) then
       if running = '1' then
