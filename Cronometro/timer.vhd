@@ -36,7 +36,7 @@ architecture timer of timer is
         );
     end component;
 
-    component clock_counter
+    component counter
         port(
             -- 1KHz Clock --
             clk1Khz: in std_logic;
@@ -90,7 +90,7 @@ architecture timer of timer is
 begin
     comp1:clk_1khz PORT MAP(clk50Mhz, clk1Khz);
 
-    comp2: clock_counter PORT MAP(
+    comp2: counter PORT MAP(
         clk1Khz,
         reset,
         start, 
