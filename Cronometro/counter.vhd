@@ -7,11 +7,15 @@ USE ieee.numeric_std.ALL;
 -- 60 min miliseconds counter --
 entity counter is
   Port (
-    clk1khz: in std_logic;
-    reset: in std_logic;
-    start: in std_logic;
-    pause: in std_logic;
+    -- 1KHz Clock --
+    clk1Khz: in std_logic;
 
+    -- Control Buttons --
+    reset : in std_logic;
+    start : in std_logic;
+    pause : in std_logic;
+
+    -- Timer Digits --
     digit_uni_miliseconds : out std_logic_vector   (3 downto 0);
     digit_dec_miliseconds : out std_logic_vector   (3 downto 0);
     digit_hun_miliseconds : out std_logic_vector   (3 downto 0);
@@ -32,7 +36,7 @@ architecture Behavioral of counter is
   constant int_bin : int_to_bin :=
     ("0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001");
 begin
-  process (clk1, reset, start, pause) begin
+  process (clk1Khz, reset, start, pause) begin
     -- Counter 60 minutes in miliseconds --
     if reset = '1' then
       miliseconds <= 0;
@@ -43,7 +47,7 @@ begin
       running <= '1';
     elsif pause = '1' then
       running <= '0';
-    elsif rising_edge(clk1) then
+    elsif rising_edge(clk1Khz) then
       if running = '1' then
         if miliseconds = 999 then
           miliseconds <= 0;
@@ -64,12 +68,12 @@ begin
     end if;
   end process;
   
-  -- REPENSAR A LÓGICA DE CONVERSÃO --
+  -- Convert integer to binary --
   digit_uni_miliseconds <= int_bin(miliseconds mod 10);
   digit_dec_miliseconds <= int_bin((miliseconds mod 100) / 10);
   digit_hun_miliseconds <= int_bin(miliseconds / 100);
   digit_uni_seconds <= int_bin(seconds mod 10);
   digit_dec_seconds <= int_bin(seconds / 10);
-  digit_uni_minute <= int_bin(minute mod 10);
-  digit_dec_minute <= int_bin(minute / 10);
+  digit_uni_minutes <= int_bin(minutes mod 10);
+  digit_dec_minutes <= int_bin(minutes / 10);
 end Behavioral; 

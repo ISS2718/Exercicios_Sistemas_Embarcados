@@ -7,11 +7,11 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity clk_1khz is
   Port (
     clk50Mhz : in std_logic ;
-    clk1khz : out std_logic 
+    clk1Khz : out std_logic 
   );
 end clk_1khz;
 
-architecture Behavioral of clk_1hz is
+architecture Behavioral of clk_1khz is
   signal temp: std_logic:= '0';
   signal counter: INTEGER:= 0;
 begin
@@ -24,6 +24,6 @@ begin
         counter<=0;
       end if;
     end if;
-    clk1khz<=temp;
+    clk1Khz<=temp;
   end process;
 end Behavioral;
