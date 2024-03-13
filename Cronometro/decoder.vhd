@@ -2,41 +2,50 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 USE ieee.numeric_std.ALL;
 
+-- 7 segment display decoder for 7 digits display --
 entity decoder is
-  Port (  
-    digit1,digit2,digit3,digit4,digit5,digit6,digit7: in std_logic_vector   (3 downto 0);
-    WhichDisplay : in std_logic_vector (2 downto 0);
-    uni_miliseconds : out std_logic_vector (7 downto 0);
-    dec_miliseconds : out std_logic_vector (7 downto 0);
-    hun_miliseconds : out std_logic_vector (7 downto 0);
-    uni_seconds : out std_logic_vector (7 downto 0);
-    dec_seconds : out std_logic_vector (7 downto 0);
-    uni_minutes : out std_logic_vector (7 downto 0);
-    dec_minutes : out std_logic_vector (7 downto 0)
+  Port (
+    -- Digits to be displayed --
+    digit_uni_miliseconds : in std_logic_vector   (3 downto 0);
+    digit_dec_miliseconds : in std_logic_vector   (3 downto 0);
+    digit_hun_miliseconds : in std_logic_vector   (3 downto 0);
+    digit_uni_seconds : in std_logic_vector   (3 downto 0);
+    digit_dec_seconds : in std_logic_vector   (3 downto 0);
+    digit_uni_minutes : in std_logic_vector   (3 downto 0);
+    digit_dec_minutes : in std_logic_vector   (3 downto 0);
+
+    -- Display 7 seg outputs --
+    disp_uni_miliseconds : out std_logic_vector (6 downto 0);
+    disp_dec_miliseconds : out std_logic_vector (6 downto 0);
+    disp_hun_miliseconds : out std_logic_vector (6 downto 0);
+    disp_uni_seconds : out std_logic_vector (6 downto 0);
+    disp_dec_seconds : out std_logic_vector (6 downto 0);
+    disp_uni_minutes : out std_logic_vector (6 downto 0);
+    disp_dec_minutes : out std_logic_vector (6 downto 0)
   );
 end decoder;
 
 architecture Behavioral of decoder is
-  type display is array (0 to 9) of std_logic_vector (7 downto 0);
+  type display is array (0 to 9) of std_logic_vector (6 downto 0);
   constant converter : display :=
-		("11000000","11111001","10100100","10110000","10011001","10010010","10000010","11111000",
-		 "10000000","10010000");
+		("1000000","1111001","0100100","0110000","0011001","0010010","0000010","1111000",
+		 "0000000","0010000");
 begin
-  process(WhichDisplay) begin
-    if WhichDisplay = "000" then
-      uni_miliseconds<= converter(to_integer(unsigned(digit1)));
-    elsif WhichDisplay = "001" then
-      dec_miliseconds<= converter(to_integer(unsigned(digit2)));
-    elsif WhichDisplay = "010" then
-      hun_miliseconds<= converter(to_integer(unsigned(digit3)));
-    elsif WhichDisplay = "011" then
-      uni_seconds<= converter(to_integer(unsigned(digit4)));
-    elsif WhichDisplay = "100" then
-      dec_seconds<= converter(to_integer(unsigned(digit5)));
-    elsif WhichDisplay = "101" then
-      uni_minutes<= converter(to_integer(unsigned(digit6)));
-    elsif WhichDisplay = "110" then
-      dec_minutes<= converter(to_integer(unsigned(digit7)));
-    end if;
+  process (
+    digit_uni_miliseconds,
+    digit_dec_miliseconds,
+    digit_hun_miliseconds,
+    digit_uni_seconds,
+    digit_dec_seconds,
+    digit_uni_minutes,
+    digit_dec_minutes
+  ) begin
+    disp_uni_miliseconds <= converter(to_integer(unsigned(digit_uni_miliseconds)));
+    disp_dec_miliseconds <= converter(to_integer(unsigned(digit_dec_miliseconds)));
+    disp_hun_miliseconds <= converter(to_integer(unsigned(digit_hun_miliseconds)));
+    disp_uni_seconds <= converter(to_integer(unsigned(digit_uni_seconds)));
+    disp_dec_seconds <= converter(to_integer(unsigned(digit_dec_seconds)));
+    disp_uni_minutes <= converter(to_integer(unsigned(digit_uni_minutes)));
+    disp_dec_minutes <= converter(to_integer(unsigned(digit_dec_minutes)));
   end process;
 end Behavioral;

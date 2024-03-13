@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 USE ieee.numeric_std.ALL;
 
-\Aqui vai ter adicionar todos os displays\
+-- REPENSAR O TIMER POR COMPLETO --
 entity timer is
     Port ( 
         clk : in  STD_LOGIC;
@@ -48,7 +48,7 @@ architecture timer of timer is
         );
     end component;
 
-    \ACHO QUE NÃO VAI PRECISAR DO anode_picker\
+    -- ACHO QUE NÃO VAI PRECISAR DO anode_picker --
     component anode_picker
         port (
         WhichDisplay: in std_logic_vector (2 downto 0);
@@ -56,7 +56,7 @@ architecture timer of timer is
         );
     end component;
 
-    \Aqui vai precisar mudar para receber todos os "displays"\
+    -- AQUI VAI PRECISAR MUDAR PARA RECEBER TODOS OS "DISPLAYS" --
     component decoder
         port ( 
             WhichDisplay: in std_logic_vector (2 downto 0);
