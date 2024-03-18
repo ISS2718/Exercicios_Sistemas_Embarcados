@@ -18,8 +18,8 @@ begin
   process(clk50Mhz) begin
     if rising_edge(clk50Mhz) then
       counter<=counter+1;
-      -- Divide the 50KHz clock by 5000 to generate a 1KHz clock (2500 cycles in '0' and 2500 cycles in '1') --
-      if (counter = 2499) then
+      -- Divide the 50MHz clock by 50000 to generate a 1KHz clock (2500 cycles in '0' and 2500 cycles in '1') --
+      if (counter = 24999) then
         temp<= NOT temp;
         counter<=0;
       end if;
