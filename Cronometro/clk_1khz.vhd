@@ -12,8 +12,8 @@ entity clk_1khz is
 end clk_1khz;
 
 architecture Behavioral of clk_1khz is
-  signal temp: std_logic:= '0';
-  signal counter: INTEGER:= 0;
+  signal temp : std_logic := '0';
+  signal counter : INTEGER := 0;
 begin
   process(clk50Mhz) begin
     if rising_edge(clk50Mhz) then
