@@ -9,6 +9,3 @@ O kit de desenvolvimento utilizado é o DEi-150.
 ### FPGA
 
 A FPGA utilizada é a EP4CGX150DF31C7.
-
-https://www.instructables.com/Digital-Clock-in-VHDL/
-https://verilogcodes.blogspot.com/2015/10/verilog-code-for-digital-clock.html
