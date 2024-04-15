@@ -1,0 +1,34 @@
+# Arquivos objeto
+*.o
+
+# Arquivos executáveis
+*.exe
+*.out
+
+# Arquivos de dependências
+*.d
+
+# Arquivos gerados pelo compilador
+*.i
+*.s
+
+# Arquivos de configuração do IDE
+/.vscode
+/.idea
+
+# Arquivos de log
+*.log
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+
+# Diretório de saída
+/output/
+
+# Pastas com os vhdls do neorv32
+/neorv32
+
+# Pasta com os testes do neorv32
+/neorv32-test
